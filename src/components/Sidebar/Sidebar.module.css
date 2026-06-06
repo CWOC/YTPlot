@@ -1,0 +1,141 @@
+.sidebar {
+  background-color: var(--bg-sidebar);
+  border-right: 1px solid var(--border-sidebar);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow-x: hidden;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.open {
+  width: 240px;
+}
+
+.collapsed {
+  width: 70px;
+}
+
+.header {
+  height: 64px;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  transition:
+    opacity 0.2s ease,
+    padding 0.3s ease;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.collapsed .header {
+  opacity: 0;
+  padding: 0;
+  pointer-events: none;
+}
+
+.logoText {
+  font-family: 'Mr Dafoe', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--magenta-prime);
+  text-shadow: var(--glow-magenta);
+  letter-spacing: 1px;
+}
+
+.divider {
+  border: 0;
+  border-top: 1px solid var(--border-sidebar);
+  margin: 0 16px;
+  transition: margin 0.3s ease;
+}
+
+.collapsed .divider {
+  margin: 0 8px;
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 20px 12px;
+}
+
+.collapsed .nav {
+  padding: 20px 8px;
+}
+
+.navLink {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px;
+  border-radius: 4px;
+  color: var(--text-muted);
+  text-decoration: none;
+  font-family: 'JetBrains Mono Variable', monospace;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.collapsed .navLink {
+  justify-content: center;
+  padding: 12px 0;
+  gap: 0;
+}
+
+.navLink:hover {
+  color: var(--cyan-flux);
+  background-color: rgba(1, 205, 254, 0.05);
+  text-shadow: var(--glow-cyan);
+}
+
+.active {
+  color: var(--magenta-prime);
+  background-color: rgba(255, 113, 206, 0.05);
+  font-weight: 600;
+  text-shadow: var(--glow-magenta);
+}
+
+.active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 15%;
+  height: 70%;
+  width: 3px;
+  background-color: var(--magenta-prime);
+  box-shadow: var(--glow-magenta);
+  border-radius: 0 2px 2px 0;
+}
+
+.linkText {
+  opacity: 1;
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+  transform: translateX(0);
+}
+
+.collapsed .linkText {
+  opacity: 0;
+  pointer-events: none;
+  width: 0;
+  transform: translateX(-10px);
+  overflow: hidden;
+  display: inline-block;
+}
+
+.navLink :global(.material-symbols-outlined) {
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 24px;
+}
