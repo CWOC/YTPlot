@@ -106,9 +106,10 @@ export type Video = {
   id: string;
   title: string;
   description: string;
-  thumbnail: string;
+  thumbnail: string | null;
   channelTitle: string;
   publishedAt: string;
+  completed: boolean;
 };
 
 export type InsertVideo = Omit<Video, 'id'>;
@@ -125,7 +126,7 @@ export type Course = {
   type: 'youtube' | 'manual';
   title: string;
   description: string;
-  thumbnail: string;
+  thumbnail: string | null;
   publishedAt: string;
   items: Video[];
   progress: number;

@@ -1,0 +1,135 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.heading {
+  font-family: 'Space Grotesk Variable', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-main);
+  letter-spacing: 0.08em;
+  margin: 0;
+}
+
+.controls {
+  display: flex;
+  gap: 8px;
+}
+
+.navBtn {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 2px;
+  color: var(--text-main);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition:
+    border-color 0.2s,
+    color 0.2s,
+    background-color 0.2s;
+}
+
+.navBtn:hover:not(:disabled) {
+  border-color: var(--magenta-prime);
+  color: var(--magenta-prime);
+  background-color: rgba(255, 113, 206, 0.06);
+}
+
+.navBtn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.viewport {
+  overflow-x: clip;
+}
+
+.track {
+  display: flex;
+  gap: 20px;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+.track > * {
+  flex-shrink: 0;
+  width: 280px;
+}
+
+/* ── Skeleton ──────────────────────────────────── */
+@keyframes shimmer {
+  0% {
+    background-position: -400px 0;
+  }
+  100% {
+    background-position: 400px 0;
+  }
+}
+
+.skeletonTrack {
+  display: flex;
+  gap: 20px;
+}
+
+.skeletonCard {
+  flex-shrink: 0;
+  width: 280px;
+  height: 300px;
+  background: linear-gradient(
+    90deg,
+    var(--bg-sidebar) 0%,
+    rgba(255, 255, 255, 0.04) 50%,
+    var(--bg-sidebar) 100%
+  );
+  background-size: 800px 100%;
+  animation: shimmer 1.8s ease-in-out infinite;
+  border: 1px solid var(--border-sidebar);
+  border-radius: 4px;
+}
+
+/* ── Empty State ───────────────────────────────── */
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 80px 24px;
+  text-align: center;
+  border: 1px dashed var(--border-sidebar);
+  border-radius: 4px;
+}
+
+.emptyIcon {
+  font-size: 48px;
+  color: var(--text-muted);
+}
+
+.emptyTitle {
+  font-family: 'Space Grotesk Variable', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-main);
+  margin: 0;
+}
+
+.emptyText {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  max-width: 400px;
+  line-height: 1.6;
+  margin: 0;
+}

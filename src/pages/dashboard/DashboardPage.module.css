@@ -1,0 +1,113 @@
+.page {
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+/* ── Page heading ───────────────────────────────── */
+.pageTitle {
+  font-family: 'Space Grotesk Variable', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-main);
+  letter-spacing: 0.08em;
+  margin: 0 0 8px;
+}
+
+.pageSubtitle {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+/* ── Import section (YT input + manual button) ─── */
+.importSection {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.importSection > :first-child {
+  flex: 1;
+  max-width: 600px;
+}
+
+.manualBtn {
+  flex-shrink: 0;
+  padding: 12px 20px;
+  background-color: transparent;
+  border: 1px solid var(--cyan-flux);
+  border-radius: 2px;
+  color: var(--cyan-flux);
+  font-family: 'JetBrains Mono Variable', monospace;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  white-space: nowrap;
+  transition:
+    background-color 0.2s,
+    box-shadow 0.2s;
+}
+
+.manualBtn:hover {
+  background-color: rgba(1, 205, 254, 0.08);
+  box-shadow: var(--glow-cyan);
+}
+
+/* ── Stats Grid ─────────────────────────────────── */
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.statCard {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 20px 24px;
+  background-color: var(--bg-sidebar);
+  border: 1px solid var(--border-sidebar);
+  border-radius: 4px;
+}
+
+.statValue {
+  font-family: 'Space Grotesk Variable', sans-serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--cyan-flux);
+  line-height: 1;
+}
+
+.statLabel {
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+/* ── Responsive ─────────────────────────────────── */
+@media (max-width: 768px) {
+  .container {
+    gap: 40px;
+  }
+
+  .importSection {
+    flex-direction: column;
+  }
+
+  .importSection > :first-child {
+    max-width: 100%;
+  }
+
+  .statsGrid {
+    grid-template-columns: 1fr;
+  }
+}

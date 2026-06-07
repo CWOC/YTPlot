@@ -87,6 +87,7 @@ export class YoutubeService {
       thumbnail: video.snippet.thumbnails.medium.url,
       channelTitle: video.snippet.channelTitle,
       publishedAt: video.snippet.publishedAt,
+      completed: false,
     };
   }
 
@@ -105,6 +106,7 @@ export class YoutubeService {
           channelTitle: video.snippet.channelTitle,
           publishedAt: video.snippet.publishedAt,
           notes: '',
+          completed: false,
         },
       ],
       progress: 0,
@@ -128,6 +130,7 @@ export class YoutubeService {
         channelTitle: item.snippet.channelTitle,
         publishedAt: item.snippet.publishedAt,
         notes: '',
+        completed: false,
       })),
       progress: 0,
     };
@@ -141,6 +144,7 @@ export class YoutubeService {
       thumbnail: item.snippet.thumbnails.medium.url,
       channelTitle: item.snippet.channelTitle,
       publishedAt: item.snippet.publishedAt,
+      completed: false,
     }));
   }
 }

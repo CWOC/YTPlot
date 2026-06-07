@@ -55,6 +55,7 @@ export const useYoutube = () => {
 
       await IndexedDBService.addCourse(data);
       useCourseStore.getState().loadRecentCourses();
+      useCourseStore.getState().loadAllCourses();
     } catch (err: unknown) {
       if (err instanceof Error) {
         setError(`Error al procesar la URL: ${err.message}`);

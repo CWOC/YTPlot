@@ -26,7 +26,7 @@ export function RecentCoursesSection() {
 
   useEffect(() => {
     loadRecentCourses();
-  }, []);
+  }, [loadRecentCourses]);
 
   if (isLoading) {
     return (

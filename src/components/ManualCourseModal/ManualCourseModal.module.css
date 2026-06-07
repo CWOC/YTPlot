@@ -1,0 +1,117 @@
+.dialog {
+  max-width: 480px;
+  width: 90vw;
+  padding: 32px;
+  background-color: var(--bg-sidebar);
+  border: 1px solid var(--border-sidebar);
+  border-radius: 4px;
+  color: var(--text-main);
+  font-family: 'JetBrains Mono Variable', monospace;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 99;
+}
+
+.dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.heading {
+  font-family: 'Space Grotesk Variable', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-main);
+  letter-spacing: 0.06em;
+  margin: 0;
+}
+
+.input {
+  width: 100%;
+  padding: 12px 14px;
+  background-color: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  color: var(--text-main);
+  font-family: 'JetBrains Mono Variable', monospace;
+  font-size: 0.8rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.input::placeholder {
+  color: var(--text-muted);
+  opacity: 0.6;
+}
+
+.input:focus {
+  border-color: var(--cyan-flux);
+}
+
+.textarea {
+  composes: input;
+  min-height: 80px;
+  resize: vertical;
+}
+
+.error {
+  font-size: 0.75rem;
+  color: #ff4d6d;
+  margin: 0;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 4px;
+}
+
+.cancelBtn {
+  padding: 10px 22px;
+  background-color: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 2px;
+  color: var(--text-muted);
+  font-family: 'JetBrains Mono Variable', monospace;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  transition:
+    border-color 0.2s,
+    color 0.2s;
+}
+
+.cancelBtn:hover {
+  border-color: var(--text-main);
+  color: var(--text-main);
+}
+
+.submitBtn {
+  padding: 10px 22px;
+  background-color: transparent;
+  border: 1px solid var(--cyan-flux);
+  border-radius: 2px;
+  color: var(--cyan-flux);
+  font-family: 'JetBrains Mono Variable', monospace;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  transition:
+    background-color 0.2s,
+    box-shadow 0.2s;
+}
+
+.submitBtn:hover {
+  background-color: rgba(1, 205, 254, 0.08);
+  box-shadow: var(--glow-cyan);
+}

@@ -6,7 +6,7 @@ export type CourseSource = 'youtube' | 'manual';
 export interface CourseCardProps {
   id: number;
   title: string;
-  thumbnail: string;
+  thumbnail: string | null;
   source: CourseSource;
   progress: number;
 }
@@ -14,7 +14,10 @@ export interface CourseCardProps {
 export function CourseCard({ id, title, thumbnail, source, progress }: CourseCardProps) {
   return (
     <article class={styles.card}>
-      <div class={styles.thumbnail} style={`background-image: url(${thumbnail})`}>
+      <div
+        class={`${styles.thumbnail} ${!thumbnail ? styles.placeholder : ''}`}
+        style={thumbnail ? `background-image: url(${thumbnail})` : undefined}
+      >
         <span class={`${styles.badge} ${styles[source]}`}>{source.toUpperCase()}</span>
         <div class={styles.thumbnailOverlay} />
       </div>

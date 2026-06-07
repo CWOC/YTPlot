@@ -26,6 +26,11 @@
   background-position: center;
 }
 
+.placeholder {
+  background: var(--sunset-gradient);
+  opacity: 0.7;
+}
+
 .thumbnailOverlay {
   position: absolute;
   inset: 0;

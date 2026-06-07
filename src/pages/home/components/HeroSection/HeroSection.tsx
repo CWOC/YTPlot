@@ -1,9 +1,7 @@
-import { useYoutubeInput } from '@/hooks/useYoutubeInput';
+import { YoutubeUrlInput } from '@/components/YoutubeUrlInput/YoutubeUrlInput';
 import styles from './HeroSection.module.css';
 
 export function HeroSection() {
-  const { inputRef, error, handleCreateCourseInput } = useYoutubeInput();
-
   return (
     <section className={styles.hero} id="hero">
       <div className={styles.glowOrb} aria-hidden="true" />
@@ -21,25 +19,7 @@ export function HeroSection() {
         </p>
 
         <div className={styles.inputBlock}>
-          <div className={styles.inputRow}>
-            <input
-              id="hero-url-input"
-              ref={inputRef}
-              type="url"
-              className={styles.urlInput}
-              placeholder="PEGA EL ENLACE DE YOUTUBE AQUÍ..."
-              aria-label="URL de YouTube"
-            />
-            <button
-              id="hero-inject-btn"
-              className={styles.injectBtn}
-              onClick={handleCreateCourseInput}
-            >
-              INYECTAR CONTENIDO
-            </button>
-          </div>
-
-          {error && <p className={styles.errorMessage}>{error}</p>}
+          <YoutubeUrlInput />
         </div>
       </div>
     </section>
