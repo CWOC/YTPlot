@@ -127,9 +127,7 @@ describe('useManualCourseForm', () => {
       await form.current.handleSubmit(event);
     });
 
-    expect(mockAddCourse).toHaveBeenCalledWith(
-      expect.objectContaining({ title: 'Spaced Title' }),
-    );
+    expect(mockAddCourse).toHaveBeenCalledWith(expect.objectContaining({ title: 'Spaced Title' }));
   });
 
   test('whitespace-only title triggers validation error', async () => {

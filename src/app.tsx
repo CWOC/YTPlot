@@ -4,6 +4,7 @@ import { Sidebar } from './components/Sidebar/Sidebar';
 import { HomePage } from './pages/home/HomePage';
 import { DashboardPage } from './pages/dashboard/DashboardPage';
 import { CoursePage } from './pages/dashboard/course/CoursePage';
+import { CourseItemPage } from './pages/dashboard/course/item/CourseItemPage';
 import { NotFoundPage } from './pages/404/NotFoundPage';
 
 export function App() {
@@ -16,6 +17,7 @@ export function App() {
           <Switch>
             <Route path="/" component={HomePage} />
             <Route path="/dashboard" component={DashboardPage} />
+            <Route path="/dashboard/course/:courseId/item/:itemId" component={CourseItemPage} />
             <Route path="/dashboard/course/:id" component={CoursePage} />
             <Route component={NotFoundPage} />
           </Switch>

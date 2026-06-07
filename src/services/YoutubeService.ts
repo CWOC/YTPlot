@@ -88,6 +88,7 @@ export class YoutubeService {
       channelTitle: video.snippet.channelTitle,
       publishedAt: video.snippet.publishedAt,
       completed: false,
+      notes: '',
     };
   }
 
@@ -145,6 +146,7 @@ export class YoutubeService {
       channelTitle: item.snippet.channelTitle,
       publishedAt: item.snippet.publishedAt,
       completed: false,
+      notes: '',
     }));
   }
 }

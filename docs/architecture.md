@@ -51,6 +51,7 @@ The application is structured into four decoupled layers. Data flows sequentiall
 ### State Management Layer (Zustand)
 
 - **Single Source of Truth (Runtime):** Holds the active course, navigation history, and user preferences in memory.
+- **Store Shape (`courseStore`):** `recentCourses`, `allCourses`, `courseById` (single loaded course), `isLoading`. Actions: `loadRecentCourses`, `loadAllCourses`, `fetchCourseById`, `toggleItemComplete`, `addItemsToCourse` (appends YouTube content), `updateItemNotes`, `clearCourseById`, `addCourse`, `updateCourse` (partial merge), `deleteCourse`.
 - **Hydration Strategy:** On application boot, Zustand stores must query the Persistence layer (`idb`) to hydrate memory before the UI renders.
 - **Optimistic Updates:** UI interactions should update the Zustand state instantly, triggering a background asynchronous sync to the local database.
 
@@ -77,10 +78,40 @@ The application is structured into four decoupled layers. Data flows sequentiall
 
 ### Course Consumption Flow (Offline-First)
 
-1. The user opens a previously imported course.
-2. The UI requests course details via a custom hook linked to the Zustand store.
-3. If data is missing from memory, Zustand fetches it from the Database Service (`idb`).
-4. Video playback relies on local progression tracking. Every time a video marks a completion milestone, an action updates the Zustand progress store, which asynchronously mirrors the update to `idb`.
+1. The user opens a previously imported course via `/dashboard/course/:id`.
+2. `CoursePage` dispatches `fetchCourseById(id)` to the Zustand store, which fetches the full course from `idb`.
+3. The course header (thumbnail, title, progress bar) renders immediately.
+4. The course items (`Video[]`) are displayed as a grid of cards. Each card shows:
+   - Thumbnail and title of the video.
+   - A toggle button to mark the item as completed or pending.
+   - When completed, the card turns grayscale with a green `check_circle` overlay icon.
+5. Clicking a card navigates to `/dashboard/course/:courseId/item/:itemId` (`CourseItemPage`) for a detailed view of the video.
+6. `toggleItemComplete(courseId, itemId)` updates the item's `completed` status optimistically in Zustand, recalculates the course `progress` asynchronously, and persists the changes to `idb`.
+
+### Item Completion Flow
+
+1. The user clicks the "COMPLETADO" / "DESMARCAR" button on an item card or the item detail page.
+2. The UI calls `toggleItemComplete(courseId, itemId)`.
+3. The store toggles the `completed` boolean on the matching `Video` item.
+4. The store recalculates `progress` = (completed items / total items) × 100.
+5. The updated course object is persisted to IndexedDB via `IndexedDBService.updateCourse`.
+6. The store refreshes `allCourses` and `recentCourses` lists.
+7. The UI re-renders to reflect the new state.
+
+### Add Items to Course Flow
+
+1. From `CoursePage`, the user pastes a YouTube URL into the course-scoped import input.
+2. `useAddToCourse(courseId)` hook extracts the video/playlist ID and fetches data via `YoutubeService`.
+3. The response is formatted into `Video[]` via `YoutubeService.formatVideoDetails` or `formatPlaylistDetails`.
+4. `addItemsToCourse(courseId, items)` is dispatched: it appends only items whose `id` is not already present in the course (dedup by video ID).
+5. The updated course is persisted to IndexedDB and the store refreshes `courseById`, `allCourses`, and `recentCourses`.
+
+### Single Item View (`CourseItemPage`)
+
+- Video playback uses a native YouTube `<iframe>` embed (`https://www.youtube.com/embed/{videoId}`). No external player library — the video ID from the `Video` type is used directly.
+- Title, description, and notes are editable via `InlineEdit`.
+- Notes are persisted per-item via `updateItemNotes(courseId, itemId, notes)`.
+- Navigation buttons (prev/next) appear based on the item's position in `course.items`.
 
 ## Architectural Rules for Agents
 

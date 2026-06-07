@@ -43,7 +43,7 @@ test.describe('Navegación e Interactividad del Sidebar', () => {
     await expect(page).toHaveURL(/\/dashboard/);
 
     const mainHeading = page.locator('main h1');
-    await expect(mainHeading).toHaveText('Mis Cursos');
+    await expect(mainHeading).toHaveText('PANEL DE CONTROL');
 
     await page.click('text=Inicio');
     await expect(page).toHaveURL(/\/$/);

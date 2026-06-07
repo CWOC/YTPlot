@@ -106,10 +106,11 @@ export type Video = {
   id: string;
   title: string;
   description: string;
-  thumbnail: string | null;
+  thumbnail: string;
   channelTitle: string;
   publishedAt: string;
   completed: boolean;
+  notes: string;
 };
 
 export type InsertVideo = Omit<Video, 'id'>;
@@ -135,6 +136,6 @@ export type Course = {
 
 export type InsertCourse = Omit<Course, 'id'>;
 
-export type CourseFromInsertPlaylist = Omit<Course, 'id', 'channelTitle'> & {
+export type CourseFromInsertPlaylist = Omit<Course, 'id'> & {
   items: InsertVideo[];
 };

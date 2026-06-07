@@ -1,0 +1,41 @@
+.display {
+  cursor: pointer;
+  transition:
+    color 0.15s,
+    outline-color 0.15s;
+  outline: 1px dashed transparent;
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+.display:hover {
+  color: var(--cyan-flux);
+  outline-color: rgba(1, 205, 254, 0.3);
+}
+
+.input {
+  all: unset;
+  display: block;
+  width: 100%;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  color: var(--text-main);
+  background-color: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-sidebar);
+  border-radius: 2px;
+  padding: 4px 8px;
+  box-sizing: border-box;
+  outline: 1px solid var(--cyan-flux);
+  outline-offset: 0;
+}
+
+.input:focus {
+  outline-color: var(--magenta-prime);
+}
+
+textarea.input {
+  resize: vertical;
+  min-height: 60px;
+}

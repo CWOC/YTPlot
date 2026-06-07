@@ -30,9 +30,9 @@ describe('YoutubeService — extractVideoId', () => {
 
 describe('YoutubeService — extractPlaylistId', () => {
   test('extracts from URL with list param', () => {
-    expect(
-      YoutubeService.extractPlaylistId('https://youtube.com/watch?v=abc&list=PLabc123'),
-    ).toBe('PLabc123');
+    expect(YoutubeService.extractPlaylistId('https://youtube.com/watch?v=abc&list=PLabc123')).toBe(
+      'PLabc123',
+    );
   });
 
   test('returns null for URL without list', () => {

@@ -15,11 +15,7 @@ export function YoutubeUrlInput() {
           placeholder="PEGA EL ENLACE DE YOUTUBE AQUÍ..."
           aria-label="URL de YouTube"
         />
-        <button
-          id="yt-inject-btn"
-          className={styles.btn}
-          onClick={handleCreateCourseInput}
-        >
+        <button id="yt-inject-btn" className={styles.btn} onClick={handleCreateCourseInput}>
           INYECTAR CONTENIDO
         </button>
       </div>

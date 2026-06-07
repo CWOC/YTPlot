@@ -101,7 +101,13 @@ describe('useYoutube', () => {
 
     const playlistData = {
       id: 'PLabc123',
-      snippet: { title: 'Test playlist', description: 'Desc', publishedAt: '2024-01-01T00:00:00Z', channelTitle: 'Channel', thumbnails: { medium: { url: 'https://img.com/m.jpg', width: 320, height: 180 } } },
+      snippet: {
+        title: 'Test playlist',
+        description: 'Desc',
+        publishedAt: '2024-01-01T00:00:00Z',
+        channelTitle: 'Channel',
+        thumbnails: { medium: { url: 'https://img.com/m.jpg', width: 320, height: 180 } },
+      },
       items: [],
     } as unknown as YoutubePlaylistResponse;
     mockFetchPlaylistById.mockResolvedValue(playlistData);
@@ -123,7 +129,10 @@ describe('useYoutube', () => {
     mockExtractPlaylistId.mockReturnValue(null);
     mockExtractVideoId.mockReturnValue('dQw4w9WgXcQ');
 
-    const videoData = { id: 'dQw4w9WgXcQ', snippet: { title: 'Test Vid' } } as unknown as YoutubeVideoResponse;
+    const videoData = {
+      id: 'dQw4w9WgXcQ',
+      snippet: { title: 'Test Vid' },
+    } as unknown as YoutubeVideoResponse;
     mockFetchVideoById.mockResolvedValue(videoData);
     mockFormatVideo.mockReturnValue({ title: 'Formatted Video' });
 
