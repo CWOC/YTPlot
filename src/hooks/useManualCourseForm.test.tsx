@@ -40,11 +40,6 @@ function getForm(): HTMLFormElement {
   return document.querySelector('form')!;
 }
 
-function setInputValue(name: string, value: string) {
-  const input = document.querySelector(`[name="${name}"]`) as HTMLInputElement;
-  input.value = value;
-}
-
 describe('useManualCourseForm', () => {
   beforeEach(() => {
     vi.clearAllMocks();

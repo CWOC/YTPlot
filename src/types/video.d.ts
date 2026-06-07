@@ -1,12 +1,12 @@
 export type YoutubePlaylistResponse = {
   etag: string;
   id: string;
-  items: [];
+  items: PlaylistItemResponse[];
   kind: string;
   snippet: Snippet;
 };
 
-type PlaylistItemResponse = {
+export type PlaylistItemResponse = {
   contentDetails: ContentDetails;
   etag: string;
   id: string;

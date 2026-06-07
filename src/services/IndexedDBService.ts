@@ -51,7 +51,7 @@ export class IndexedDBService {
     await db.add('courses', course);
   }
 
-  static async updateCourse(id: number, updatedCourse: InsertCourse) {
+  static async updateCourse(_id: number, updatedCourse: InsertCourse) {
     const db = await IndexedDBService.initDB();
 
     await db.put('courses', updatedCourse);

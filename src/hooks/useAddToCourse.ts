@@ -1,10 +1,6 @@
 import { useState, useRef } from 'preact/hooks';
 import { YoutubeService } from '@/services/YoutubeService';
 import { useCourseStore } from '@/stores/courseStore';
-import type { YoutubePlaylistResponse, YoutubeVideoResponse } from '@/types/video.d';
-
-type YoutubeData = null | YoutubePlaylistResponse | YoutubeVideoResponse;
-
 export function useAddToCourse(courseId: number) {
   const [error, setError] = useState<string | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);

@@ -158,7 +158,7 @@ describe('useYoutube', () => {
     await hook.current.handleCreateCourse('https://youtube.com/playlist?list=PLabc123');
 
     expect(hook.current.error).toBe(
-      'No se pudo obtener información de la URL proporcionada. Verifica que el enlace sea correcto y accesible.',
+      'No se pudo obtener información de la lista de reproducción.',
     );
     expect(mockAddCourse).not.toHaveBeenCalled();
   });

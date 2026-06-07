@@ -35,7 +35,7 @@ vi.mock('idb', () => ({
 }));
 
 const mockCourse = {
-  type: 'youtube',
+  type: 'youtube' as const,
   title: 'Test Course',
   description: 'A test course',
   thumbnail: 'https://img.com/thumb.jpg',

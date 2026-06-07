@@ -5,11 +5,12 @@ import { YoutubeUrlInput } from './YoutubeUrlInput';
 
 const { mockHandleCreateCourseInput, mockUseYoutubeInput } = vi.hoisted(() => {
   const mockHandle = vi.fn();
-  const mockHook = vi.fn(() => ({
+  const defaultReturn = {
     inputRef: { current: document.createElement('input') },
-    error: null,
+    error: null as string | null,
     handleCreateCourseInput: mockHandle,
-  }));
+  };
+  const mockHook = vi.fn().mockReturnValue(defaultReturn);
   return { mockHandleCreateCourseInput: mockHandle, mockUseYoutubeInput: mockHook };
 });
 

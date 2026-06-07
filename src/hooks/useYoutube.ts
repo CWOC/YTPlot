@@ -2,16 +2,16 @@ import { useState } from 'preact/hooks';
 import { YoutubeService } from '@/services/YoutubeService';
 import { IndexedDBService } from '@/services/IndexedDBService';
 import { useCourseStore } from '@/stores/courseStore';
-import type { YoutubePlaylistResponse, YoutubeVideoResponse } from '@/types/video.d';
-
-type YoutubeData = null | YoutubePlaylistResponse | YoutubeVideoResponse;
+import type {
+  CourseFromInsertPlaylist,
+  CourseFromInsertVideo,
+} from '@/types/video.d';
 
 export const useYoutube = () => {
   const [error, setError] = useState<string | null>(null);
 
   async function handleCreateCourse(url: string) {
     setError(null);
-    let data: YoutubeData = null;
 
     if (!url.trim()) {
       setError('Por favor, ingresa una URL de YouTube.');
@@ -31,15 +31,27 @@ export const useYoutube = () => {
         return;
       }
 
+      let course: CourseFromInsertPlaylist | CourseFromInsertVideo | null = null;
+
       if (playlistId) {
-        data = await YoutubeService.fetchPlaylistById(playlistId);
+        const playlist = await YoutubeService.fetchPlaylistById(playlistId);
+        if (!playlist) {
+          setError('No se pudo obtener información de la lista de reproducción.');
+
+          return;
+        }
+        course = YoutubeService.formatPlaylistDetailsIntoCourse(playlist);
+      } else if (videoId) {
+        const video = await YoutubeService.fetchVideoById(videoId);
+        if (!video) {
+          setError('No se pudo obtener información del video.');
+
+          return;
+        }
+        course = YoutubeService.formatVideoDetailsIntoCourse(video);
       }
 
-      if (videoId) {
-        data = await YoutubeService.fetchVideoById(videoId);
-      }
-
-      if (!data) {
+      if (!course) {
         setError(
           'No se pudo obtener información de la URL proporcionada. Verifica que el enlace sea correcto y accesible.',
         );
@@ -47,13 +59,7 @@ export const useYoutube = () => {
         return;
       }
 
-      if (data.items && Array.isArray(data.items)) {
-        data = YoutubeService.formatPlaylistDetailsIntoCourse(data as YoutubePlaylistResponse);
-      } else {
-        data = YoutubeService.formatVideoDetailsIntoCourse(data as YoutubeVideoResponse);
-      }
-
-      await IndexedDBService.addCourse(data);
+      await IndexedDBService.addCourse(course);
       useCourseStore.getState().loadRecentCourses();
       useCourseStore.getState().loadAllCourses();
     } catch (err: unknown) {

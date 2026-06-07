@@ -1,6 +1,7 @@
 import type {
   YoutubePlaylistResponse,
   YoutubeVideoResponse,
+  PlaylistItemResponse,
   Video,
   CourseFromInsertVideo,
   CourseFromInsertPlaylist,
@@ -123,7 +124,7 @@ export class YoutubeService {
       description: playlist.snippet.description,
       thumbnail: playlist.snippet.thumbnails.medium.url,
       publishedAt: playlist.snippet.publishedAt,
-      items: playlist.items.map((item: Video) => ({
+      items: playlist.items.map((item: PlaylistItemResponse) => ({
         id: item.contentDetails.videoId,
         title: item.snippet.title,
         description: item.snippet.description,
@@ -134,11 +135,12 @@ export class YoutubeService {
         completed: false,
       })),
       progress: 0,
+      notes: '',
     };
   }
 
   static formatPlaylistDetails(playlist: YoutubePlaylistResponse): Video[] {
-    return playlist.items.map((item: Video) => ({
+    return playlist.items.map((item: PlaylistItemResponse) => ({
       id: item.contentDetails.videoId,
       title: item.snippet.title,
       description: item.snippet.description,

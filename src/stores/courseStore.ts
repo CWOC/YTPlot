@@ -52,11 +52,11 @@ export const useCourseStore = create<CourseStore>((set) => ({
     const course = await IndexedDBService.getCourseById(courseId);
     if (!course) return;
 
-    const updatedItems = course.items.map((item) =>
+    const updatedItems = course.items.map((item: Video) =>
       item.id === itemId ? { ...item, completed: !item.completed } : item,
     );
 
-    const completedCount = updatedItems.filter((i) => i.completed).length;
+    const completedCount = updatedItems.filter((i: Video) => i.completed).length;
     const progress = updatedItems.length
       ? Math.round((completedCount / updatedItems.length) * 100)
       : 0;
@@ -77,8 +77,8 @@ export const useCourseStore = create<CourseStore>((set) => ({
     const course = await IndexedDBService.getCourseById(courseId);
     if (!course) return;
 
-    const existingIds = new Set(course.items.map((i) => i.id));
-    const newItems = items.filter((i) => !existingIds.has(i.id));
+    const existingIds = new Set(course.items.map((i: Video) => i.id));
+    const newItems = items.filter((i: Video) => !existingIds.has(i.id));
     if (!newItems.length) return;
 
     const updatedCourse = { ...course, items: [...course.items, ...newItems] };
@@ -97,7 +97,7 @@ export const useCourseStore = create<CourseStore>((set) => ({
     const course = await IndexedDBService.getCourseById(courseId);
     if (!course) return;
 
-    const updatedItems = course.items.map((item) =>
+    const updatedItems = course.items.map((item: Video) =>
       item.id === itemId ? { ...item, notes } : item,
     );
 
@@ -117,8 +117,8 @@ export const useCourseStore = create<CourseStore>((set) => ({
     const course = await IndexedDBService.getCourseById(courseId);
     if (!course) return;
 
-    const updatedItems = course.items.filter((item) => item.id !== itemId);
-    const completedCount = updatedItems.filter((i) => i.completed).length;
+    const updatedItems = course.items.filter((item: Video) => item.id !== itemId);
+    const completedCount = updatedItems.filter((i: Video) => i.completed).length;
     const progress = updatedItems.length
       ? Math.round((completedCount / updatedItems.length) * 100)
       : 0;
