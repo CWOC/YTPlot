@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "build:gh-pages": "tsc -b && vite build --base=/YTPlot/",
     "preview": "vite preview",
+    "deploy": "npm run build:gh-pages && gh-pages -d dist",
     "test:unit": "vitest run",
     "test:unit:watch": "vitest",
     "test:e2e": "playwright test",
@@ -35,6 +37,7 @@
     "eslint": "^10.4.1",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-react-hooks": "^7.1.1",
+    "gh-pages": "^6.3.0",
     "happy-dom": "^20.10.1",
     "prettier": "^3.8.3",
     "typescript": "~6.0.2",
