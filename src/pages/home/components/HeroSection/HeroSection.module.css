@@ -1,0 +1,150 @@
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 80px 24px;
+}
+
+/* ── Radial glow orb behind title ─────────────── */
+.glowOrb {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 420px;
+  height: 420px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 113, 206, 0.12) 0%, transparent 70%);
+  pointer-events: none;
+  animation: orbPulse 4s ease-in-out infinite;
+}
+
+@keyframes orbPulse {
+  0%,
+  100% {
+    opacity: 0.7;
+    transform: translateX(-50%) scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(-50%) scale(1.08);
+  }
+}
+
+/* ── Content ───────────────────────────────────── */
+.content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 24px;
+  max-width: 720px;
+  width: 100%;
+}
+
+/* ── Title ─────────────────────────────────────── */
+.title {
+  font-family: 'Space Grotesk Variable', sans-serif;
+  font-size: clamp(2.4rem, 6vw, 4rem);
+  font-weight: 800;
+  line-height: 1.1;
+  color: var(--text-main);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  text-shadow:
+    0 0 30px rgba(255, 113, 206, 0.25),
+    0 0 60px rgba(255, 113, 206, 0.1);
+  margin: 0;
+}
+
+/* ── Subtitle ──────────────────────────────────── */
+.subtitle {
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: var(--text-muted);
+  max-width: 560px;
+}
+
+/* ── Input block ───────────────────────────────── */
+.inputBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  margin-top: 12px;
+}
+
+.inputRow {
+  display: flex;
+  width: 100%;
+  gap: 0;
+}
+
+.urlInput {
+  flex: 1;
+  padding: 12px 16px;
+  background-color: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-right: none;
+  border-radius: 2px 0 0 2px;
+  color: var(--text-muted);
+  font-family: 'JetBrains Mono Variable', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+  outline: none;
+  transition:
+    border-color 0.2s,
+    background-color 0.2s;
+}
+
+.urlInput::placeholder {
+  color: rgba(128, 128, 128, 0.5);
+  font-size: 0.68rem;
+}
+
+.urlInput:focus {
+  border-color: var(--magenta-prime);
+  background-color: rgba(255, 113, 206, 0.04);
+}
+
+.injectBtn {
+  padding: 12px 22px;
+  background-color: var(--magenta-prime);
+  border: 1px solid var(--magenta-prime);
+  border-radius: 0 2px 2px 0;
+  color: var(--deep-space);
+  font-family: 'JetBrains Mono Variable', monospace;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  white-space: nowrap;
+  transition:
+    background-color 0.2s,
+    box-shadow 0.2s,
+    opacity 0.2s;
+}
+
+.injectBtn:hover:not(:disabled) {
+  background-color: #ff90da;
+  box-shadow: var(--glow-magenta);
+}
+
+.injectBtn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+p.errorMessage.errorMessage {
+  color: #ff4d6d;
+  font-size: 0.675rem;
+  font-family: 'JetBrains Mono Variable', monospace;
+  letter-spacing: 0.05em;
+  margin: 0;
+}

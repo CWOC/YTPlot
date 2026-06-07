@@ -1,0 +1,155 @@
+.section {
+  padding: 80px 24px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+  max-width: 1040px;
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.viewAllBtn {
+  padding: 14px 40px;
+  background-color: transparent;
+  text-decoration: none;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 2px;
+  color: var(--text-main);
+  font-family: 'JetBrains Mono Variable', monospace;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  cursor: pointer;
+  transition:
+    border-color 0.2s,
+    color 0.2s,
+    box-shadow 0.2s;
+}
+
+.viewAllBtn:hover {
+  border-color: var(--cyan-flux);
+  color: var(--cyan-flux);
+  box-shadow: var(--glow-cyan);
+}
+
+/* ── Empty State ───────────────────────────────── */
+.emptyState {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 80px 24px;
+  text-align: center;
+  border: 1px dashed var(--border-sidebar);
+  border-radius: 4px;
+}
+
+.emptyIcon {
+  font-size: 48px;
+  color: var(--text-muted);
+}
+
+.emptyTitle {
+  font-family: 'Space Grotesk Variable', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.emptyText {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  max-width: 360px;
+  line-height: 1.6;
+}
+
+/* ── Skeleton Card ─────────────────────────────── */
+@keyframes shimmer {
+  0% {
+    background-position: -400px 0;
+  }
+  100% {
+    background-position: 400px 0;
+  }
+}
+
+.skeletonCard {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-sidebar);
+  border: 1px solid var(--border-sidebar);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.skeletonThumb {
+  height: 160px;
+  background: linear-gradient(
+    90deg,
+    var(--bg-sidebar) 0%,
+    rgba(255, 255, 255, 0.04) 50%,
+    var(--bg-sidebar) 100%
+  );
+  background-size: 800px 100%;
+  animation: shimmer 1.8s ease-in-out infinite;
+}
+
+.skeletonBody {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 16px;
+}
+
+.skeletonLine {
+  height: 14px;
+  border-radius: 4px;
+  background: linear-gradient(
+    90deg,
+    var(--bg-sidebar) 0%,
+    rgba(255, 255, 255, 0.04) 50%,
+    var(--bg-sidebar) 100%
+  );
+  background-size: 800px 100%;
+  animation: shimmer 1.8s ease-in-out infinite;
+}
+
+.skeletonLineShort {
+  width: 60%;
+}
+
+.skeletonProgress {
+  height: 3px;
+  border-radius: 99px;
+  background: linear-gradient(
+    90deg,
+    var(--bg-sidebar) 0%,
+    rgba(255, 255, 255, 0.04) 50%,
+    var(--bg-sidebar) 100%
+  );
+  background-size: 800px 100%;
+  animation: shimmer 1.8s ease-in-out infinite;
+}
+
+.skeletonBtn {
+  margin-top: 4px;
+  height: 36px;
+  border-radius: 2px;
+  background: linear-gradient(
+    90deg,
+    var(--bg-sidebar) 0%,
+    rgba(255, 255, 255, 0.04) 50%,
+    var(--bg-sidebar) 100%
+  );
+  background-size: 800px 100%;
+  animation: shimmer 1.8s ease-in-out infinite;
+}

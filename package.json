@@ -22,7 +22,8 @@
     "@fontsource/mr-dafoe": "^5.2.8",
     "idb": "^8.0.3",
     "preact": "^10.29.1",
-    "wouter-preact": "^3.10.0"
+    "wouter-preact": "^3.10.0",
+    "zustand": "^5.0.14"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",

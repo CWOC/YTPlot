@@ -1,3 +1,4 @@
+import { useState } from 'preact/hooks';
 import { Link, useLocation } from 'wouter-preact';
 import styles from './Sidebar.module.css';
 
@@ -7,17 +8,18 @@ interface RouteItem {
   icon: string;
 }
 
-interface SidebarProps {
-  isOpen: boolean;
-}
-
 const ROUTES: RouteItem[] = [
   { path: '/', name: 'Inicio', icon: 'home' },
   { path: '/dashboard', name: 'Dashboard', icon: 'widgets' },
 ];
 
-export function Sidebar({ isOpen }: SidebarProps) {
+export function Sidebar() {
   const [location] = useLocation();
+  const [isOpen, setIsOpen] = useState(true);
+
+  const toggleSidebar = () => {
+    setIsOpen((prev) => !prev);
+  };
 
   return (
     <aside
@@ -45,6 +47,14 @@ export function Sidebar({ isOpen }: SidebarProps) {
           );
         })}
       </nav>
+
+      <button
+        className={styles.toggleButton}
+        onClick={toggleSidebar}
+        aria-label={isOpen ? 'Contraer menú de navegación' : 'Expandir menú de navegación'}
+      >
+        <span className="material-symbols-outlined">{isOpen ? 'logout' : 'login'}</span>
+      </button>
     </aside>
   );
 }

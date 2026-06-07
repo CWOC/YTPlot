@@ -1,0 +1,90 @@
+.section {
+  padding: 80px 24px;
+  text-align: center;
+}
+
+/* ── Steps grid ────────────────────────────────── */
+.steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 40px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+/* ── Numbered circle ───────────────────────────── */
+.circle {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: 2px solid currentColor;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'JetBrains Mono Variable', monospace;
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  transition: box-shadow 0.3s ease;
+}
+
+.circle.magenta {
+  color: var(--magenta-prime);
+  border-color: var(--magenta-prime);
+}
+
+.circle.magenta:hover {
+  box-shadow: var(--glow-magenta);
+}
+
+.circle.cyan {
+  color: var(--cyan-flux);
+  border-color: var(--cyan-flux);
+}
+
+.circle.cyan:hover {
+  box-shadow: var(--glow-cyan);
+}
+
+.circle.violet {
+  color: #b48aff;
+  border-color: #b48aff;
+}
+
+.circle.violet:hover {
+  box-shadow:
+    0 0 10px rgba(180, 138, 255, 0.4),
+    0 0 20px rgba(180, 138, 255, 0.2);
+}
+
+/* ── Step text ─────────────────────────────────── */
+.stepTitle {
+  font-family: 'Space Grotesk Variable', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.stepTitle.magenta {
+  color: var(--magenta-prime);
+}
+.stepTitle.cyan {
+  color: var(--cyan-flux);
+}
+.stepTitle.violet {
+  color: #b48aff;
+}
+
+.stepDescription {
+  font-size: 0.82rem;
+  line-height: 1.65;
+  color: var(--text-muted);
+  max-width: 240px;
+}

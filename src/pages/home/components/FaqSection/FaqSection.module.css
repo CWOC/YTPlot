@@ -1,0 +1,83 @@
+.section {
+  padding: 80px 24px;
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+/* ── Accordion list ────────────────────────────── */
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.item {
+  background-color: var(--bg-sidebar);
+  border: 1px solid var(--border-sidebar);
+  border-radius: 2px;
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+
+.item.open {
+  border-color: rgba(255, 113, 206, 0.25);
+}
+
+/* ── Trigger button ────────────────────────────── */
+.trigger {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  transition: background-color 0.2s;
+}
+
+.trigger:hover {
+  background-color: rgba(255, 255, 255, 0.02);
+}
+
+.question {
+  font-family: 'JetBrains Mono Variable', monospace;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-main);
+  line-height: 1.4;
+}
+
+.chevron {
+  color: var(--text-muted);
+  font-size: 1.2rem !important;
+  flex-shrink: 0;
+  transition: color 0.2s;
+}
+
+.item.open .chevron {
+  color: var(--magenta-prime);
+}
+
+/* ── Answer panel ──────────────────────────────── */
+.answer {
+  max-height: 0;
+  overflow: hidden;
+  transition:
+    max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    padding 0.2s;
+  padding: 0 20px;
+}
+
+.item.open .answer {
+  max-height: 200px;
+  padding: 0 20px 18px;
+}
+
+.answerText {
+  font-size: 0.82rem;
+  line-height: 1.7;
+  color: var(--text-muted);
+}

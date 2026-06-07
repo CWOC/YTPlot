@@ -1,0 +1,136 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-sidebar);
+  border: 1px solid var(--border-sidebar);
+  border-radius: 4px;
+  overflow: hidden;
+  transition:
+    border-color 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+  cursor: pointer;
+}
+
+.card:hover {
+  border-color: var(--magenta-prime);
+  transform: translateY(-4px);
+  box-shadow: var(--glow-magenta);
+}
+
+/* ── Thumbnail ─────────────────────────────────── */
+.thumbnail {
+  position: relative;
+  height: 160px;
+  background-size: cover;
+  background-position: center;
+}
+
+.thumbnailOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(5, 5, 5, 0.85) 0%, transparent 60%);
+}
+
+.badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 1;
+  font-family: 'JetBrains Mono Variable', monospace;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 3px 8px;
+  border-radius: 2px;
+}
+
+.badge.youtube {
+  background-color: var(--magenta-prime);
+  color: var(--deep-space);
+}
+
+.badge.manual {
+  background-color: var(--cyan-flux);
+  color: var(--deep-space);
+}
+
+/* ── Body ──────────────────────────────────────── */
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 16px;
+  flex: 1;
+}
+
+.title {
+  font-family: 'Space Grotesk Variable', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-main);
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* ── Progress ──────────────────────────────────── */
+.progressHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.progressLabel {
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+}
+
+.progressValue {
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: var(--cyan-flux);
+}
+
+.progressTrack {
+  height: 3px;
+  background-color: rgba(255, 255, 255, 0.08);
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background: var(--sunset-gradient);
+  border-radius: 99px;
+  transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: var(--glow-cyan);
+}
+
+/* ── Resume Button ─────────────────────────────── */
+.resumeBtn {
+  margin-top: 4px;
+  width: 100%;
+  text-decoration: none;
+  text-align: center;
+  padding: 9px 0;
+  background-color: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  color: var(--text-muted);
+  font-family: 'JetBrains Mono Variable', monospace;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  transition:
+    border-color 0.2s,
+    color 0.2s,
+    background-color 0.2s;
+}
+
+.resumeBtn:hover {
+  border-color: var(--magenta-prime);
+  color: var(--magenta-prime);
+  background-color: rgba(255, 113, 206, 0.05);
+}

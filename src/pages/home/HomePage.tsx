@@ -1,11 +1,21 @@
+import { HeroSection } from './components/HeroSection/HeroSection';
+import { WhySection } from './components/WhySection/WhySection';
+import { RecentCoursesSection } from './components/RecentCoursesSection/RecentCoursesSection';
+import { HowItWorksSection } from './components/HowItWorksSection/HowItWorksSection';
+import { FaqSection } from './components/FaqSection/FaqSection';
+import styles from './HomePage.module.css';
+
 export function HomePage() {
   return (
-    <div>
-      <h1>Inicio</h1>
-      <p>
-        Bienvenido a YTPlot, tu gestor de cursos offline a partir de listas de reproducción de
-        YouTube.
-      </p>
-    </div>
+    <main className={styles.page}>
+      <HeroSection />
+
+      <div className={styles.container}>
+        <WhySection />
+        <RecentCoursesSection />
+        <HowItWorksSection />
+        <FaqSection />
+      </div>
+    </main>
   );
 }

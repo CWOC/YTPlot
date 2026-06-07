@@ -1,93 +1,49 @@
 .sidebar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
   background-color: var(--bg-sidebar);
-  border-right: 1px solid var(--border-sidebar);
-  height: 100vh;
+  border-top: 1px solid var(--border-sidebar);
   display: flex;
-  flex-direction: column;
-  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  overflow-x: hidden;
-  position: relative;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 0;
   box-sizing: border-box;
 }
 
-.open {
-  width: 240px;
-}
-
-.collapsed {
-  width: 70px;
-}
-
-.header {
-  height: 64px;
-  display: flex;
-  align-items: center;
-  padding: 0 20px;
-  transition:
-    opacity 0.2s ease,
-    padding 0.3s ease;
-  overflow: hidden;
-  white-space: nowrap;
-}
-
-.collapsed .header {
-  opacity: 0;
-  padding: 0;
-  pointer-events: none;
-}
-
-.logoText {
-  font-family: 'Mr Dafoe', sans-serif;
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--magenta-prime);
-  text-shadow: var(--glow-magenta);
-  letter-spacing: 1px;
-}
-
+.header,
 .divider {
-  border: 0;
-  border-top: 1px solid var(--border-sidebar);
-  margin: 0 16px;
-  transition: margin 0.3s ease;
-}
-
-.collapsed .divider {
-  margin: 0 8px;
+  display: none;
 }
 
 .nav {
   display: flex;
-  flex-direction: column;
-  gap: 8px;
-  padding: 20px 12px;
-}
-
-.collapsed .nav {
-  padding: 20px 8px;
+  flex-direction: row;
+  gap: 4px;
+  padding: 0;
+  width: 100%;
+  justify-content: space-around;
 }
 
 .navLink {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 16px;
-  padding: 12px;
+  gap: 4px;
+  padding: 8px 12px;
   border-radius: 4px;
   color: var(--text-muted);
   text-decoration: none;
   font-family: 'JetBrains Mono Variable', monospace;
-  font-size: 0.9rem;
+  font-size: 0.7rem;
   transition: all 0.2s ease;
   white-space: nowrap;
   cursor: pointer;
   position: relative;
   overflow: hidden;
-}
-
-.collapsed .navLink {
-  justify-content: center;
-  padding: 12px 0;
-  gap: 0;
 }
 
 .navLink:hover {
@@ -106,30 +62,21 @@
 .active::before {
   content: '';
   position: absolute;
-  left: 0;
-  top: 15%;
-  height: 70%;
-  width: 3px;
+  top: 0;
+  left: 15%;
+  width: 70%;
+  height: 3px;
   background-color: var(--magenta-prime);
   box-shadow: var(--glow-magenta);
-  border-radius: 0 2px 2px 0;
+  border-radius: 0 0 2px 2px;
 }
 
 .linkText {
   opacity: 1;
-  transition:
-    opacity 0.2s ease,
-    transform 0.2s ease;
-  transform: translateX(0);
 }
 
-.collapsed .linkText {
-  opacity: 0;
-  pointer-events: none;
-  width: 0;
-  transform: translateX(-10px);
-  overflow: hidden;
-  display: inline-block;
+.toggleButton {
+  display: none;
 }
 
 .navLink :global(.material-symbols-outlined) {
@@ -138,4 +85,149 @@
   align-items: center;
   justify-content: center;
   min-width: 24px;
+}
+
+@media (min-width: 768px) {
+  .sidebar {
+    position: relative;
+    border-right: 1px solid var(--border-sidebar);
+    border-top: none;
+    height: 100vh;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    padding: 0;
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    width: 70px;
+  }
+
+  .open {
+    width: 240px;
+  }
+
+  .collapsed {
+    width: 70px;
+  }
+
+  .header {
+    display: flex;
+    height: 64px;
+    align-items: center;
+    padding: 0 20px;
+    transition:
+      opacity 0.2s ease,
+      padding 0.3s ease;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  .collapsed .header {
+    opacity: 0;
+    padding: 0;
+    pointer-events: none;
+  }
+
+  .logoText {
+    font-family: 'Mr Dafoe', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--magenta-prime);
+    text-shadow: var(--glow-magenta);
+    letter-spacing: 1px;
+  }
+
+  .divider {
+    display: block;
+    border: 0;
+    border-top: 1px solid var(--border-sidebar);
+    margin: 0 16px;
+    transition: margin 0.3s ease;
+  }
+
+  .collapsed .divider {
+    margin: 0 8px;
+  }
+
+  .nav {
+    flex-direction: column;
+    gap: 8px;
+    padding: 20px 12px;
+  }
+
+  .collapsed .nav {
+    padding: 20px 8px;
+  }
+
+  .navLink {
+    flex-direction: row;
+    gap: 16px;
+    padding: 12px;
+    font-size: 0.9rem;
+    justify-content: flex-start;
+  }
+
+  .collapsed .navLink {
+    justify-content: center;
+    padding: 12px 0;
+    gap: 0;
+  }
+
+  .active::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 15%;
+    height: 70%;
+    width: 3px;
+    background-color: var(--magenta-prime);
+    box-shadow: var(--glow-magenta);
+    border-radius: 0 2px 2px 0;
+  }
+
+  .linkText {
+    transition:
+      opacity 0.2s ease,
+      transform 0.2s ease;
+    transform: translateX(0);
+  }
+
+  .collapsed .linkText {
+    opacity: 0;
+    pointer-events: none;
+    width: 0;
+    transform: translateX(-10px);
+    overflow: hidden;
+    display: inline-block;
+  }
+
+  .toggleButton {
+    display: flex;
+    position: absolute;
+    top: 16px;
+    right: 0;
+    transform: translateX(50%);
+    z-index: 99;
+    background-color: var(--bg-sidebar);
+    border: 1px solid var(--border-sidebar);
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    align-items: center;
+    justify-content: center;
+    color: var(--magenta-prime);
+    cursor: pointer;
+    transition:
+      border-color 0.2s,
+      color 0.2s;
+    outline: none;
+  }
+
+  .toggleButton:hover {
+    color: var(--cyan-flux);
+    border-color: var(--border-sidebar);
+  }
+
+  .toggleButton:focus-visible {
+    border-color: var(--border-sidebar);
+  }
 }
